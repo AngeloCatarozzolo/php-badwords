@@ -6,9 +6,10 @@
     //Testo con la parola PHP censurata
     $txt_censurato = str_replace($censura,"***", $txt );
     //Variabile che fa scegliere all'utente la parola da censurare
-    $censura_utente = $_GET['censura_utente'];
+    $censura_utente = isset ($_GET['censura_utente']) ? $_GET['censura_utente'] : '' ;
     //Variabvile che sostituisce la parola scelta dall'utente con "***"
     $get_censura = str_replace($censura_utente,"***", $txt);
+    var_dump($get_censura)
 ?>
 
 <!DOCTYPE html>
@@ -40,6 +41,15 @@
 
     <!-- Stampa la lunghezza del paragrafo con la parola che l'utente ha scelto di censurare -->
     <p> Il testo censurato dall'utente contiene <?php echo strlen($get_censura) ?> caratteri. </p>
-    
+
+    <hr>
+
+    <h4>Inserisci la parola da censurare</h4>
+
+    <form action="index.php" method="GET">
+        <label for="$censura_utente">Parola da cenusrare</label>
+        <input name="$censura_utente" id="$censura_utente" type="text" placeholder="inserisci parola">
+        <button type="submit">Invia</button>
+    </form>
 </body>
 </html>
